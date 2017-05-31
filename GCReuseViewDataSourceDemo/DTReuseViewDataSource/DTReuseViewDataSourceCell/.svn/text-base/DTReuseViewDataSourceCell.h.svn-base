@@ -1,0 +1,38 @@
+//
+//  DTReuseViewDataSourceCell.h
+//  DatuYZ
+//
+//  Created by gao on 2017/4/19.
+//  Copyright © 2017年 大途宏安. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSInteger, DTReuseViewDataSoucrceCellContainerViewType) {
+    
+    //普通的自定义tableViewCell,数据配置时的data是字典
+    DTReuseViewDataSoucrceCellContainerViewTypeDefaut = 1,
+    
+    //tableViewCell上有banner，数据配置时的data是数组
+    DTReuseViewDataSoucrceCellContainerViewTypeBanner,
+    
+    //tableViewCell上有CollectionView，数据配置时的data是数组
+    DTReuseViewDataSoucrceCellContainerViewTypeCollectionView
+};
+
+/**
+ TableViewCell 中包含的子视图类型协议
+ */
+@protocol DTReuseViewDataSoucrceCellContainerViewTypeProtocol <NSObject>
+@required
+
+/**
+ TableViewCell 中包含的子视图类型协议
+ @return 枚举
+ */
++ (DTReuseViewDataSoucrceCellContainerViewType)containerViewType;
+
+@end
+@interface DTReuseViewDataSourceCell : UITableViewCell
+@property (nonatomic,weak)NSObject<DTReuseViewDataSoucrceCellContainerViewTypeProtocol> *child;
+@end
